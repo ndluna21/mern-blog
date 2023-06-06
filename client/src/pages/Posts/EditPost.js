@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Form, Input, Button, Tag, message } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import TextArea from "antd/lib/input/TextArea";
 import { postsAPI } from "./../../api/api";
 
@@ -11,7 +11,7 @@ export default function EditPost() {
   const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState({});
-  const userState = useSelector((st) => st.user);
+  // const userState = useSelector((st) => st.user);
   const location = useLocation();
   const [postID, setPostID] = useState(null);
 

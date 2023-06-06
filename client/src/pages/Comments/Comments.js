@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import defaultUser from "./../../assets/images/default-user.png";
-import Avatar from "antd/lib/avatar/avatar";
+// import defaultUser from "./../../assets/images/default-user.png";
+// import Avatar from "antd/lib/avatar/avatar";
 import "./Comments.scss";
-import moment from "moment";
-import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
+// import moment from "moment";
+// import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 import { useSelector } from "react-redux";
-import { Form as FinalForm, Field } from "react-final-form";
-import { Form, Input, Button, message, Alert, Modal } from "antd";
+// import { Form as FinalForm, Field } from "react-final-form";
+import { message, Modal } from "antd";
+// import { Form, Input, Button, Alert } from "antd";
 import { commentsAPI } from "../../api/api";
 import isEmpty from "lodash.isempty";
 import CommentsDesktop from "./CommentsDesktop";
@@ -23,7 +24,7 @@ export default function Comments({
   const [selectedEditCommentID, setEditSelectedCommentID] = useState(null);
   const [deleteReloading, setDeleteReloading] = useState(false);
   const [editReloading, setEditReloading] = useState(false);
-  const [initialValues, setInitialValues] = useState({});
+  // const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState(null);
   const [width, setWidth] = useState(window.innerWidth);
 

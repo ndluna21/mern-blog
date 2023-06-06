@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
+// import { Player } from "@lottiefiles/react-lottie-player";
 import SignupForm from "./SignupForm";
 
 export default function Signup() {

@@ -35,7 +35,7 @@ router.post("/signup", [middleware.isNotLoggedIn], async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const reqUser = req.body.user;
-
+  console.log('------------- reqUser: ', reqUser);
   // Validation
   const { errors, isValid } = validateSignin(reqUser);
   if (!isValid) {
@@ -47,8 +47,12 @@ router.post("/login", async (req, res) => {
   // Find user
   try {
     const user = await User.findOne({ email });
+
+    console.log('----------- user: ', user);
+
     if (!user) return res.status(404).json({ error: "Email not found" });
     if (!user.validPassword(password)) {
+      console.log('------ validate password fail');
       return res.status(400).json({ error: "Incorrect password" });
     }
 
@@ -57,6 +61,7 @@ router.post("/login", async (req, res) => {
       id: user._id,
       userName: user.userName,
       imagePath: user.imagePath,
+      userType: user.user_type,
     };
     jwt.sign(
       payload,

@@ -12,6 +12,8 @@ export default function SignupForm() {
 
   const onSubmit = async (event) => {
     try {
+      event.user_type = 'admin';
+      console.log('---------- event: ', event);
       await authAPI.signup({ user: event });
       message.success("User created successfully");
       router.push("/login");

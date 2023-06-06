@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Tag, message } from "antd";
+import {Form, Input, Button, Tag, message, Select} from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
 import { useSelector } from "react-redux";
 import TextArea from "antd/lib/input/TextArea";
-import { postsAPI } from "./../../api/api";
+import {menusAPI, postsAPI} from "./../../api/api";
 
 export default function NewPost() {
   const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState({});
   const userState = useSelector((st) => st.user);
+  const [menus, setMenus] = useState([]);
+  const [menuId, setMenuId] = useState(null);
 
   const onSubmit = async (event) => {
     try {
       await postsAPI.add({
-        post: { ...event, createdBy: userState.user.id },
+        post: { ...event, createdBy: userState.user.id, menuID: menuId },
       });
       message.success("Post created successfully");
       router.push("/");
@@ -28,6 +30,19 @@ export default function NewPost() {
     }
   };
 
+    const getListMenu = async () => {
+        const { data: res } = await menusAPI.getAll();
+        let newMenu = [];
+        res.map(item => {
+            newMenu.push({
+                value: item._id,
+                label: item.title,
+            })
+        });
+
+        setMenus(newMenu);
+    }
+
   const checkValidation = (values) => {
     const errors = {};
     if (!values.title?.trim()) {
@@ -38,6 +53,19 @@ export default function NewPost() {
     }
     return errors;
   };
+
+    const onChange = (value) => {
+        console.log(`selected ${value}`);
+        setMenuId(value);
+    };
+    const onSearch = (value) => {
+        console.log('search:', value);
+        setMenuId(value);
+    };
+
+    useEffect(() => {
+        getListMenu().then(r => {});
+    },[]);
 
   return (
     <div className="form-container">
@@ -77,7 +105,20 @@ export default function NewPost() {
                 )}
               </Field>
             </Form.Item>
-
+              <Form.Item label="menu">
+                  <Select
+                      showSearch
+                      placeholder="Select a person"
+                      optionFilterProp="children"
+                      name="menu_id"
+                      onChange={onChange}
+                      onSearch={onSearch}
+                      filterOption={(input, option) =>
+                          (option?.title ?? '').toLowerCase().includes(input.toLowerCase())
+                      }
+                      options={menus}
+                  />
+              </Form.Item>
             <Form.Item label="Image URL" labelCol={{ span: 24 }}>
               <Field name="imagePath">
                 {({ input, meta }) => (

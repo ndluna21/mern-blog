@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Tag, message, Alert } from "antd";
+// import { useHistory } from "react-router-dom";
+import { Form, Input, Button, message, Alert } from "antd";
+// import { Tag } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
 import { commentsAPI } from "./../../api/api";
 
 export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
-  const router = useHistory();
+  // const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState(null);
   const [reloading, setReloading] = useState(false);

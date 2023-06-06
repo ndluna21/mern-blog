@@ -131,6 +131,10 @@ code {
   float: right;
 }
 
+.float-left {
+  float: left;
+}
+
 .unhoverable-menu-item {
   color: white !important;
   opacity: 1 !important;
@@ -220,4 +224,12 @@ code {
   width: 100% !important;
   padding: 0.5rem 0.3rem !important;
   border-radius: 5px !important;
+}
+.ant-layout-header {
+  padding: 0 !important;
+}
+
+.ant-avatar-square.ant-avatar-image {
+  width: 140px;
+  height: auto;
 }

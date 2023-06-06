@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { postsAPI } from "./../../api/api";
 import { useLocation } from "react-router-dom";
 import PostsGrid from "../../components/PostsGrid/PostsGrid";
-import { Form, Input, Button, Tag, message, Image, Spin, Alert } from "antd";
+import { Spin, Alert } from "antd";
+// import { Form, Input, Button, Tag, message, Image } from "antd";
 
 export default function UserPosts() {
   const userState = useSelector((st) => st.user);
@@ -65,6 +66,7 @@ export default function UserPosts() {
       ) : Object.keys(postsData).length === 0 ? (
         <div className="loader-container">
           <Spin size="large" />
+          <h2>You have no posts yet</h2>
         </div>
       ) : (
         <>

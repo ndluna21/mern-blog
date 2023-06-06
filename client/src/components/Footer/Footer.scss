@@ -1,8 +1,8 @@
 @import "./../../assets/styles/variables.scss";
 
-.ant-layout-footer {
+.ant-layout-footer, .footer {
   text-align: center;
-  background-color: $DarkBlue !important;
-  color: white !important;
+  background-color: white !important;
+  color: $DarkBlue !important;
   padding: 10px !important;
 }

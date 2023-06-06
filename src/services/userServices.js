@@ -5,6 +5,7 @@ export const getAllUsers = async () => {
 };
 
 export const getOneUser = async (id) => {
+  console.log('------------ ID: ', id);
   let user = await User.findById(id);
   let res = user.toObject();
   delete res.password;

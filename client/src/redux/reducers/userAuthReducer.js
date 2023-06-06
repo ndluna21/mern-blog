@@ -21,6 +21,7 @@ if (loadState() && loadState().token) {
       id: decodedToken.id,
       userName: decodedToken.userName,
       imagePath: decodedToken.imagePath,
+      userType: decodedToken.userType,
     },
   };
 } else {
@@ -39,6 +40,7 @@ export const userAuthReducer = (state = initialState, action) => {
             id: decodedToken.id,
             userName: decodedToken.userName,
             imagePath: decodedToken.imagePath,
+            userType: decodedToken.userType,
           },
         };
       }
@@ -70,6 +72,7 @@ export const userAuthReducer = (state = initialState, action) => {
         saveState(newState);
         return newState;
       }
+      break;
 
     default:
       return state;

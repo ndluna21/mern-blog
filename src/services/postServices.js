@@ -1,7 +1,9 @@
 import Post from "./../models/post";
 import User from "./../models/user";
+import Menu from "../models/menu";
 
-export const getAllPosts = async () => {
+export const getAllPosts = async (params) => {
+  console.log('----------- params: ', params);
   return await Post.find({});
 };
 
@@ -32,8 +34,14 @@ export const getPostByUserID = async (userId) => {
 };
 
 export const addPost = async (post) => {
+  console.log('------------- new post: ', post);
   //add post
-  return await Post.create(post);
+  const findMenu = await Menu.findById(post.menuID);
+  const newPost = await Post.create(post);
+
+  await findMenu.posts.push(newPost);
+  const updateMenu = await findMenu.save();
+  return newPost;
 };
 
 export const updatePost = async (post) => {

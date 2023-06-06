@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import "./Home.scss";
 import { Player } from "@lottiefiles/react-lottie-player";
-import { Button, Row, Col, Divider, Card, Spin, Alert } from "antd";
+import { Button, Divider, Spin, Alert } from "antd";
+// import { Row, Col, Card } from "antd";
 import { RightCircleOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { postsAPI } from "../../api/api";
-import defaultPostImage from "./../../assets/images/default-post-image.jpg";
+// import defaultPostImage from "./../../assets/images/default-post-image.jpg";
 import { useSelector } from "react-redux";
 import PostsGrid from "../../components/PostsGrid/PostsGrid";
-const { Meta } = Card;
+// const { Meta } = Card;
 
 export default function Home() {
   const router = useHistory();
@@ -104,6 +105,7 @@ export default function Home() {
                   >
                     Get Started
                   </Button>
+                  <img src="https://nguoikesu.com/images/timeline-bg.jpg#joomlaImage://local-images/timeline-bg.jpg?width=1100&height=360" alt=""/>
                 </div>
               ) : (
                 <>
@@ -143,6 +145,7 @@ export default function Home() {
       ) : (
         <div className="loader-container">
           <Spin size="large" />
+          {/* <h2>No post</h2> */}
         </div>
       )}
     </div>

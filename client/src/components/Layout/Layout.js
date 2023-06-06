@@ -3,7 +3,8 @@ import HorizontalNavbar from "./../Navbars/HorizontalNavbar";
 import { Layout as AntdLayout } from "antd";
 import FooterComponent from "./../Footer/FooterComponent";
 
-const { Header, Footer, Sider, Content } = AntdLayout;
+const { Header} = AntdLayout;
+// const { Footer, Sider, Content } = AntdLayout;
 
 export default function Layout({ children }) {
   return (
