@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./../Home/Home.scss";
 import { Divider, Spin, Alert } from "antd";
-// import { Button, Row, Col, Card } from "antd";
 import { useParams } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
 import {menusAPI} from "../../api/api";
-// import {postsAPI} from "../../api/api";
 import PostsGrid from "../../components/PostsGrid/PostsGrid";
-// const { Meta } = Card;
 
 export default function ListMenu() {
-    // const router = useHistory();
     const [postsData, setPostsData] = useState([]);
     const [menu, setMenu] = useState({});
     const [width, setWidth] = useState(window.innerWidth);
@@ -36,8 +31,8 @@ export default function ListMenu() {
                     setErrorMsg(null);
                 }
             } catch (error) {
-                setErrorMsg("Error loading posts data");
-                console.log("Error retrieving all posts...", error);
+                setErrorMsg("Lỗi khi truy xuất dữ liệu");
+                console.log("Lỗi khi truy xuất toàn bộ dữ liệu...", error);
             }
         })();
     }, [reload, id]);

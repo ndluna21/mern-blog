@@ -3,14 +3,12 @@ import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import "./Home.scss";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { Button, Divider, Spin, Alert } from "antd";
-// import { Row, Col, Card } from "antd";
 import { RightCircleOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { postsAPI } from "../../api/api";
-// import defaultPostImage from "./../../assets/images/default-post-image.jpg";
 import { useSelector } from "react-redux";
 import PostsGrid from "../../components/PostsGrid/PostsGrid";
-// const { Meta } = Card;
+import Post from "../Posts/Post";
 
 export default function Home() {
   const router = useHistory();
@@ -35,8 +33,8 @@ export default function Home() {
         setPostsData(res);
         setErrorMsg(null);
       } catch (error) {
-        setErrorMsg("Error loading posts data");
-        console.log("Error retrieving all posts...", error);
+        setErrorMsg("Lỗi truy xuất dữ liệu");
+        console.log("Lỗi khi truy xuất toàn bộ dữ liệu...", error);
       }
     })();
   }, [reload]);
@@ -49,8 +47,8 @@ export default function Home() {
             <div className="home-jumbotron">
               {width <= 650 ? (
                 <div className="centered-section">
-                  <h3>A blogging website for</h3>
-                  <h2>EVERYONE</h2>
+                  <h3>Một trang blog dành cho </h3>
+                  <h2>MỌI NGƯỜI</h2>
                   <Button
                     type="primary"
                     shape="round"
@@ -58,14 +56,14 @@ export default function Home() {
                     size="large"
                     onClick={() => router.push("/posts/new")}
                   >
-                    Write a post now!
+                    Viết bài ngay!
                   </Button>
                 </div>
               ) : (
                 <>
                   <div className="left-section">
-                    <h3>A blogging website for</h3>
-                    <h2>EVERYONE</h2>
+                    <h3>Một trang blog dành cho </h3>
+                    <h2>MỌI NGƯỜI</h2>
                     <Button
                       type="primary"
                       shape="round"
@@ -73,7 +71,7 @@ export default function Home() {
                       size="large"
                       onClick={() => router.push("/posts/new")}
                     >
-                      Get Started
+                      Bắt đầu sử dụng
                     </Button>
                   </div>
                   <div className="right-section">
@@ -94,8 +92,8 @@ export default function Home() {
             <div className="home-jumbotron">
               {width <= 650 ? (
                 <div className="centered-section">
-                  <h3>A blogging website for</h3>
-                  <h2>EVERYONE</h2>
+                  <h3>Một trang blog dành cho</h3>
+                  <h2>MỌI NGƯỜI</h2>
                   <Button
                     type="primary"
                     shape="round"
@@ -103,15 +101,15 @@ export default function Home() {
                     size="large"
                     onClick={() => router.push("/login")}
                   >
-                    Get Started
+                    Bắt đầu sử dụng
                   </Button>
                   <img src="https://nguoikesu.com/images/timeline-bg.jpg#joomlaImage://local-images/timeline-bg.jpg?width=1100&height=360" alt=""/>
                 </div>
               ) : (
                 <>
                   <div className="left-section">
-                    <h3>A blogging website for</h3>
-                    <h2>EVERYONE</h2>
+                    <h3>Một trang blog dành cho</h3>
+                    <h2>MỌI NGƯỜI</h2>
                     <Button
                       type="primary"
                       shape="round"
@@ -119,7 +117,7 @@ export default function Home() {
                       size="large"
                       onClick={() => router.push("/login")}
                     >
-                      Get Started
+                      Bắt đầu sử dụng
                     </Button>
                   </div>
                   <div className="right-section">
@@ -135,12 +133,12 @@ export default function Home() {
           </Jumbotron>
         </>
       )}
-      <Divider orientation="center">Most recent posts</Divider>
+      <Divider orientation="center">Bài viết được xem nhiều nhất</Divider>
       {errorMsg ? (
         <div className="loader-container">
           <Alert message={errorMsg} type="error" />
         </div>
-      ) : postsData && Boolean(postsData.length) ? (
+      ) : postsData && Boolean(postsData.length) && Boolean(Post.isActive) ? (
         <PostsGrid data={postsData} reloadPosts={(param) => setReload(param)} />
       ) : (
         <div className="loader-container">

@@ -17,20 +17,20 @@ export default function LoginForm() {
     try {
       dispatch(userAuthActions.login({ user: event }));
     } catch (error) {
-      console.log("Error logging in user...", error.response ?? error);
+      console.log("Lỗi khi đăng nhập...", error.response ?? error);
       if (error.response && error.response.data) {
         setSubmissionErrors(error.response.data);
-      } else setSubmissionErrors({ err: "Login error" });
+      } else setSubmissionErrors({ err: "Lỗi đăng nhập" });
     }
   };
 
   const checkValidation = (values) => {
     const errors = {};
     if (!values.email?.trim()) {
-      errors.email = "Please enter the email";
+      errors.email = "Vui lòng nhập Email";
     }
     if (!values.password?.trim()) {
-      errors.password = "Please enter the password";
+      errors.password = "Vui lòng nhập mật khẩu";
     }
     return errors;
   };
@@ -40,7 +40,7 @@ export default function LoginForm() {
       setSubmissionErrors([userState.error]);
     }
     if (userState.isLoggedIn) {
-      message.success("User logged in successfully");
+      message.success("Đăng nhập thành công");
       router.push("/");
     }
   }, [userState]);
@@ -68,7 +68,7 @@ export default function LoginForm() {
               )}
             </Field>
           </Form.Item>
-          <Form.Item label="Password" labelCol={{ span: 24 }}>
+          <Form.Item label="Mật khẩu" labelCol={{ span: 24 }}>
             <Field name="password">
               {({ input, meta }) => (
                 <div>
@@ -99,14 +99,14 @@ export default function LoginForm() {
 
           <div className="buttons-wrapper-vertical">
             <Button disabled={submitting} htmlType="submit" type="primary">
-              Login
+              Đăng nhập
             </Button>
             <Button
               htmlType="button"
               type="link"
               onClick={() => router.push("signup")}
             >
-              Don't have an account? Signup!
+              Không có tài khoản? Đăng kí ngay!
             </Button>
           </div>
         </form>

@@ -21,7 +21,7 @@ function* createLogin(action) {
       );
     }
   } catch (err) {
-    yield put(userAuthActions.loginFailed("Login data is incorrect"));
+    yield put(userAuthActions.loginFailed("Tài khoản hoặc mật khẩu không chính xác"));
   }
 }
 

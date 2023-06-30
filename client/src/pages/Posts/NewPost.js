@@ -20,13 +20,13 @@ export default function NewPost() {
       await postsAPI.add({
         post: { ...event, createdBy: userState.user.id, menuID: menuId },
       });
-      message.success("Post created successfully");
+      message.success("Đăng bài thành công");
       router.push("/");
     } catch (error) {
-      console.log("Error creating a new post...", error.response ?? error);
+      console.log("Lỗi khi tạo bài viết mới...", error.response ?? error);
       if (error.response && error.response.data) {
         setSubmissionErrors(error.response.data);
-      } else setSubmissionErrors({ err: "Post error" });
+      } else setSubmissionErrors({ err: "Lỗi đăng bài" });
     }
   };
 
@@ -46,10 +46,10 @@ export default function NewPost() {
   const checkValidation = (values) => {
     const errors = {};
     if (!values.title?.trim()) {
-      errors.title = "Please enter the post's title";
+      errors.title = "Vui lòng nhập tiêu đề bài viết";
     }
     if (!values.content?.trim()) {
-      errors.content = "Please enter the post's content";
+      errors.content = "Vui lòng nhập nội dung bài viết";
     }
     return errors;
   };
@@ -69,7 +69,7 @@ export default function NewPost() {
 
   return (
     <div className="form-container">
-      <h3>Create a new post</h3>
+      <h3>Tạo bài viết mới</h3>
       <FinalForm
         initialValues={initialValues}
         validate={checkValidation}
@@ -77,7 +77,7 @@ export default function NewPost() {
         render={({ handleSubmit, submitting }) => (
           <form className="form" onSubmit={handleSubmit}>
             <Form.Item
-              label="Title"
+              label="Tiêu đề"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
@@ -93,7 +93,7 @@ export default function NewPost() {
               </Field>
             </Form.Item>
 
-            <Form.Item label="Content" labelCol={{ span: 24 }}>
+            <Form.Item label="Nội dung" labelCol={{ span: 24 }}>
               <Field name="content">
                 {({ input, meta }) => (
                   <div>
@@ -105,10 +105,10 @@ export default function NewPost() {
                 )}
               </Field>
             </Form.Item>
-              <Form.Item label="menu">
+              <Form.Item label="Danh mục">
                   <Select
                       showSearch
-                      placeholder="Select a person"
+                      placeholder="Chọn danh mục"
                       optionFilterProp="children"
                       name="menu_id"
                       onChange={onChange}
@@ -119,7 +119,7 @@ export default function NewPost() {
                       options={menus}
                   />
               </Form.Item>
-            <Form.Item label="Image URL" labelCol={{ span: 24 }}>
+            <Form.Item label="Đường dẫn ảnh" labelCol={{ span: 24 }}>
               <Field name="imagePath">
                 {({ input, meta }) => (
                   <div>
@@ -144,10 +144,10 @@ export default function NewPost() {
 
             <div className="buttons-wrapper-horizontal">
               <Button disabled={submitting} htmlType="submit" type="primary">
-                Create Post
+                Đăng bài viết
               </Button>
               <Button htmlType="button" onClick={() => router.goBack()}>
-                Back
+                Trở lại
               </Button>
             </div>
           </form>

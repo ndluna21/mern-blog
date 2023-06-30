@@ -15,31 +15,31 @@ export default function SignupForm() {
       event.user_type = 'admin';
       console.log('---------- event: ', event);
       await authAPI.signup({ user: event });
-      message.success("User created successfully");
+      message.success("Tạo tài khoản thành công");
       router.push("/login");
     } catch (error) {
-      console.log("Error registering a new user...", error.response ?? error);
+      console.log("Lỗi khi tạo người dùng mới...", error.response ?? error);
       if (error.response && error.response.data) {
         setSubmissionErrors(error.response.data);
-      } else setSubmissionErrors({ err: "Signup error" });
+      } else setSubmissionErrors({ err: "Đăng ký lỗi" });
     }
   };
 
   const checkValidation = (values) => {
     const errors = {};
     if (!values.userName?.trim()) {
-      errors.userName = "Please enter the userName";
+      errors.userName = "Vui lòng nhập tên người dùng";
     }
     if (!values.password?.trim()) {
-      errors.password = "Please enter the password";
+      errors.password = "Vui lòng nhập mật khẩu";
     }
     if (!values.confirmPassword?.trim()) {
-      errors.confirmPassword = "Please enter the password confirmation";
+      errors.confirmPassword = "Vui lòng nhập xác nhận mật khẩu";
     } else if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = "Passwords do not match";
+      errors.confirmPassword = "Mật khẩu không trùng hợp";
     }
     if (!values.email?.trim()) {
-      errors.email = "Please enter the email";
+      errors.email = "Vui lòng nhập email";
     }
     return errors;
   };
@@ -52,7 +52,7 @@ export default function SignupForm() {
       render={({ handleSubmit, submitting }) => (
         <form className="form" onSubmit={handleSubmit}>
           <Form.Item
-            label="UserName"
+            label="Tên người dùng"
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
           >
@@ -67,7 +67,7 @@ export default function SignupForm() {
               )}
             </Field>
           </Form.Item>
-          <Form.Item label="Password" labelCol={{ span: 24 }}>
+          <Form.Item label="Mật khẩu" labelCol={{ span: 24 }}>
             <Field name="password">
               {({ input, meta }) => (
                 <div>
@@ -79,7 +79,7 @@ export default function SignupForm() {
               )}
             </Field>
           </Form.Item>
-          <Form.Item label="Confirm Password" labelCol={{ span: 24 }}>
+          <Form.Item label="Nhập lại mật khẩu" labelCol={{ span: 24 }}>
             <Field name="confirmPassword">
               {({ input, meta }) => (
                 <div>
@@ -103,7 +103,7 @@ export default function SignupForm() {
               )}
             </Field>
           </Form.Item>
-          <Form.Item label="Summary" labelCol={{ span: 24 }}>
+          <Form.Item label="Tóm tắt" labelCol={{ span: 24 }}>
             <Field name="summary">
               {({ input, meta }) => (
                 <div>
@@ -115,7 +115,7 @@ export default function SignupForm() {
               )}
             </Field>
           </Form.Item>
-          <Form.Item label="Image URL" labelCol={{ span: 24 }}>
+          <Form.Item label="Đường dẫn ảnh" labelCol={{ span: 24 }}>
             <Field name="imagePath">
               {({ input, meta }) => (
                 <div>
@@ -140,14 +140,14 @@ export default function SignupForm() {
 
           <div className="buttons-wrapper-vertical">
             <Button disabled={submitting} htmlType="submit" type="primary">
-              Signup
+              Đăng kí
             </Button>
             <Button
               htmlType="button"
               type="link"
               onClick={() => router.push("login")}
             >
-              Already have an account? Login!
+              Đã có tài khoản? Đăng nhập!
             </Button>
           </div>
         </form>

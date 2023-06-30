@@ -22,13 +22,13 @@ export default function PostsGrid({ data, reloadPosts }) {
       setReload(!reload);
       reloadPosts(!reload);
       setDeleteModal(false);
-      message.success("Post deleted successfully");
+      message.success("Xóa bài viết thành công");
     } catch (error) {
-      console.log("Error deleting post...", error.response ?? error);
-      message.error("Error deleting post");
+      console.log("Lỗi khi đang xóa bài viết...", error.response ?? error);
+      message.error("Lỗi khi đang xóa bài viết");
       if (error.response && error.response.data) {
         message.error(error.response.data);
-      } else message.error("Error deleting post");
+      } else message.error("Lỗi xóa bài viết");
       setDeleteModal(false);
     }
   };
@@ -86,13 +86,13 @@ export default function PostsGrid({ data, reloadPosts }) {
       </Row>
 
       <Modal
-        title="Delete Confirmation"
+        title="Xác nhận xóa bài viết"
         visible={deleteModal}
         onOk={() => confirmDelete()}
         onCancel={() => setDeleteModal(false)}
         centered
       >
-        <p>Are you sure you want to delete post?</p>
+        <p>Bạn có chắc chắn muốn xóa bài viết?</p>
       </Modal>
     </div>
   );

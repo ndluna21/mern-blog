@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Player } from "@lottiefiles/react-lottie-player";
 import SignupForm from "./SignupForm";
 
 export default function Signup() {
@@ -16,13 +15,13 @@ export default function Signup() {
     <div className="signup">
       {width <= 650 ? (
         <div className="center-panel">
-          <h2 className="centered-text">Sign up for free</h2>
+          <h2 className="centered-text">Đăng kí miễn phí</h2>
           <SignupForm />
         </div>
       ) : (
         <>
           <div className="center-panel-small">
-            <h2 className="centered-text">Sign up for free</h2>
+            <h2 className="centered-text">Đăng kí miễn phí</h2>
             <SignupForm />
           </div>
         </>

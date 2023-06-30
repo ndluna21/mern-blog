@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Menu from "./pages/Menus/Menu";
 import NewMenu from "./pages/Menus/NewMenu";
 import ListMenu from "./pages/Menus/ListMenu";
+import Check from "./pages/Check/Check";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/menu" component={Menu} />
         <Route exact path="/menu/new" component={NewMenu} />
         <Route exact path="/menu/list/:id" component={ListMenu} />
+        <Route exact path="/check" component={Check} />
         {/* <Route exact path="/menu/list/:id" component={ListMenu} /> */}
         <Route exact path="/posts/view" component={Post} />
         <LoggedInRoute exact path="/posts/new" component={NewPost} />

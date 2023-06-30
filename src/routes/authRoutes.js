@@ -50,10 +50,10 @@ router.post("/login", async (req, res) => {
 
     console.log('----------- user: ', user);
 
-    if (!user) return res.status(404).json({ error: "Email not found" });
+    if (!user) return res.status(404).json({ error: "Email không tồn tại" });
     if (!user.validPassword(password)) {
       console.log('------ validate password fail');
-      return res.status(400).json({ error: "Incorrect password" });
+      return res.status(400).json({ error: "Sai mật khẩu" });
     }
 
     // Create and send the JWT token

@@ -12,7 +12,7 @@ export const loadState = () => {
 
     return JSON.parse(serializedState);
   } catch (error) {
-    console.log("Load state error...", error.response ?? error);
+    console.log("Lỗi trạng thái tải...", error.response ?? error);
     return undefined;
   }
 };
@@ -23,6 +23,6 @@ export const saveState = (state) => {
     const serializedState = JSON.stringify(state);
     sessionStorage.setItem("user", serializedState);
   } catch (error) {
-    console.log("Save state error...", error.response ?? error);
+    console.log("Lỗi trạng thái lưu...", error.response ?? error);
   }
 };

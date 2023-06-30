@@ -23,7 +23,7 @@ console.log('--------------- PORT: ', port);
 // Connect DB
 mongoose.set("strictQuery", true);
 mongoose.connect(process.env.URL_DB, {useNewUrlParser: true, useUnifiedTopology: true })
-    .then(res => console.log(`Connection Successfull `))
+    .then(res => console.log(`Connection Successfully `))
     .catch(err => console.log(`Error in DB connection ${err}`));
 // END
 

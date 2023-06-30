@@ -34,11 +34,11 @@ export default function UserProfile() {
           setErrorMsg(null);
         } catch (error) {
           setInitialValues({});
-          setErrorMsg("Error loading user profile");
-          console.log("Error retrieving user data...", error);
+          setErrorMsg("Lỗi khi tải thông tin người dùng");
+          console.log("Lỗi khi truy xuất dữ liệu người dùng...", error);
         }
       } else {
-        message.error("An error occured while retrieving user ID");
+        message.error("Đã xảy ra lỗi khi truy xuất ID người dùng");
         router.push("/");
       }
     })();
@@ -47,21 +47,21 @@ export default function UserProfile() {
   const checkValidation = (values) => {
     const errors = {};
     if (editing && !values.userName?.trim()) {
-      errors.userName = "Please enter the userName";
+      errors.userName = "Vui lòng nhập tên người dùng";
     }
     if (editingPassword && !values.oldPassword?.trim()) {
-      errors.password = "Please enter the old password";
+      errors.password = "Vui lòng nhập mật khẩu cũ";
     }
     if (editingPassword && !values.password?.trim()) {
-      errors.password = "Please enter the password";
+      errors.password = "Vui lòng nhập mật khẩu";
     }
     if (editingPassword && !values.confirmPassword?.trim()) {
-      errors.confirmPassword = "Please enter the password confirmation";
+      errors.confirmPassword = "Vui lòng nhập xác nhận mật khẩu";
     } else if (editingPassword && values.confirmPassword !== values.password) {
-      errors.confirmPassword = "Passwords do not match";
+      errors.confirmPassword = "Mật khẩu không trùng hợp";
     }
     if (editing && !values.email?.trim()) {
-      errors.email = "Please enter the email";
+      errors.email = "Vui lòng nhập Email";
     }
     return errors;
   };
@@ -71,15 +71,15 @@ export default function UserProfile() {
     try {
       await usersAPI.update({ user: event });
       dispatch(userAuthActions.updateUser(event));
-      message.success("User profile updated successfully");
+      message.success("Hồ sơ người dùng đã được cập nhật thành công");
       setEditing(false);
       setEditingPassword(false);
       setInitialValues(event);
     } catch (error) {
-      console.log("Error updating user profile..", error.response ?? error);
+      console.log("Lỗi khi cập nhật hồ sơ người dùng..", error.response ?? error);
       if (error.response && error.response.data) {
         setSubmissionErrors(error.response.data);
-      } else setSubmissionErrors({ err: "Profile update error" });
+      } else setSubmissionErrors({ err: "Lỗi cập nhật hồ sơ người dùng" });
     }
   };
 
@@ -97,7 +97,7 @@ export default function UserProfile() {
         ) : (
           <>
             <h2 className="centered-text ">
-              {initialValues.userName}'s Profile
+              Hồ sơ của {initialValues.userName}
             </h2>
             <div className="user-image centered-text ">
               <Image
@@ -113,7 +113,7 @@ export default function UserProfile() {
                 render={({ handleSubmit, submitting, form }) => (
                   <form className="form" onSubmit={handleSubmit}>
                     <Form.Item
-                      label="UserName"
+                      label="Tên người dùng"
                       labelCol={{ span: 24 }}
                       wrapperCol={{ span: 24 }}
                     >
@@ -151,7 +151,7 @@ export default function UserProfile() {
                         )}
                       </Field>
                     </Form.Item>
-                    <Form.Item label="Summary" labelCol={{ span: 24 }}>
+                    <Form.Item label="Tóm tắt" labelCol={{ span: 24 }}>
                       <Field name="summary">
                         {({ input, meta }) => (
                           <div>
@@ -174,7 +174,7 @@ export default function UserProfile() {
                       </Field>
                     </Form.Item>
                     {editing && (
-                      <Form.Item label="Image URL" labelCol={{ span: 24 }}>
+                      <Form.Item label="Đường dẫn ảnh" labelCol={{ span: 24 }}>
                         <Field name="imagePath">
                           {({ input, meta }) => (
                             <div>
@@ -190,7 +190,7 @@ export default function UserProfile() {
 
                     {editingPassword && (
                       <>
-                        <Form.Item label="Old Password" labelCol={{ span: 24 }}>
+                        <Form.Item label="Mật khẩu cũ" labelCol={{ span: 24 }}>
                           <Field name="oldPassword">
                             {({ input, meta }) => (
                               <div>
@@ -206,7 +206,7 @@ export default function UserProfile() {
                             )}
                           </Field>
                         </Form.Item>
-                        <Form.Item label="Password" labelCol={{ span: 24 }}>
+                        <Form.Item label="Mật khẩu" labelCol={{ span: 24 }}>
                           <Field name="password">
                             {({ input, meta }) => (
                               <div>
@@ -219,7 +219,7 @@ export default function UserProfile() {
                           </Field>
                         </Form.Item>
                         <Form.Item
-                          label="Confirm Password"
+                          label="Nhập lại mật khẩu"
                           labelCol={{ span: 24 }}
                         >
                           <Field name="confirmPassword">
@@ -263,7 +263,7 @@ export default function UserProfile() {
                               setEditingPassword(false);
                             }}
                           >
-                            Edit Profile
+                            Chỉnh sửa hồ sơ
                           </Button>
                           <Button
                             htmlType="button"
@@ -274,7 +274,7 @@ export default function UserProfile() {
                               setEditingPassword(true);
                             }}
                           >
-                            Edit Password
+                            Đổi mật khẩu
                           </Button>
                         </>
                       )}
@@ -287,7 +287,7 @@ export default function UserProfile() {
                             type="primary"
                             icon={<SaveFilled />}
                           >
-                            Submit
+                            Xác nhận
                           </Button>
                           <Button
                             htmlType="button"
@@ -299,7 +299,7 @@ export default function UserProfile() {
                               form.reset();
                             }}
                           >
-                            Cancel
+                            Đóng
                           </Button>
                         </>
                       )}

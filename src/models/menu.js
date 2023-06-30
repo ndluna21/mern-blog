@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const menuSchema = Schema({
     title: {
         type: String,
-        required: [true, "Please enter the menu's title"],
+        required: [true, "Vui lòng nhập tên danh mục"],
     },
     createdAt: { type: Date, default: Date.now, required: true },
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],

@@ -1,5 +1,4 @@
 import Post from "./../models/post";
-import User from "./../models/user";
 import Comment from "./../models/comment";
 
 export const addComment = async (comment) => {

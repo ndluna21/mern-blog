@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Form, Input, Button, message, Alert } from "antd";
-// import { Tag } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
 import { commentsAPI } from "./../../api/api";
 
 export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
-  // const router = useHistory();
+  const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState(null);
   const [reloading, setReloading] = useState(false);
 
   const onSubmit = async (event) => {
     if (isEmpty(event) || !event.content) {
-      setSubmissionErrors("Can't submit an empty comment");
+      setSubmissionErrors("Không thể đăng bình luận không có nội dung");
     } else {
       setSubmissionErrors(null);
     }
@@ -23,7 +22,7 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
       await commentsAPI.add({
         comment: { ...event, createdBy: createdBy, postId: postId },
       });
-      message.success("Comment added successfully");
+      message.success("Thêm bình luận thành công");
       setReloading(!reloading);
       setReloadingFlag(reloading);
     } catch (error) {
@@ -53,7 +52,7 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
                     <Input
                       {...input}
                       name="content"
-                      placeholder="Add a comment"
+                      placeholder="Thêm bình luận"
                     />
                   </div>
                 )}
@@ -75,11 +74,11 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
                 htmlType="button"
                 onClick={form.reset}
               >
-                Clear
+                Xóa
               </Button>
 
               <Button disabled={submitting} htmlType="submit" type="primary">
-                Comment
+                Đăng
               </Button>
             </div>
           </form>

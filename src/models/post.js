@@ -4,14 +4,18 @@ const Schema = mongoose.Schema;
 const postSchema = Schema({
   title: {
     type: String,
-    required: [true, "Please enter the post's title"],
+    required: [true, "Vui lòng nhập tiêu đề bài viết"],
   },
   content: {
     type: String,
-    required: [true, "Please enter the post's content"],
+    required: [true, "Vui lòng nhập nội dung bài viết"],
   },
   imagePath: {
     type: String,
+  },
+  isActive: {
+    type: Boolean,
+    default: false
   },
   createdAt: { type: Date, default: Date.now, required: true },
   createdBy: { type: mongoose.Schema.ObjectId, ref: "User", required: true },

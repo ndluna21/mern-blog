@@ -68,14 +68,14 @@ export default function CommentsMobile({
                         htmlType="submit"
                         type="primary"
                       >
-                        Update Comment
+                        Sửa bình luận
                       </Button>
                       <Button
                         disabled={submitting}
                         htmlType="button"
                         onClick={() => setEditSelectedCommentID(null)}
                       >
-                        Cancel
+                        Quay lại
                       </Button>
                     </div>
                   </form>

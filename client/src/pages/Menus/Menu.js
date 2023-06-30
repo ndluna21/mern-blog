@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-// import { useLocation } from "react-router-dom";
-// import { useSelector } from "react-redux";
 import {menusAPI} from "../../api/api";
 import "../Posts/Post.scss";
 import moment from "moment";
-// import {Table} from "antd";
 import "./Menu.scss";
 
 export default function Menu() {
@@ -28,12 +25,11 @@ export default function Menu() {
       <div className="view-post" id="customers">
         <h2>Danh sách MENU 
           <a onClick={() => router.push("/menu/new")}>Thêm mới</a> 
-          
         </h2>
         <table className="table">
           <thead>
           <tr>
-            <th scope="col">#</th>
+            {/* <th scope="col">#</th> */}
             <th scope="col">Tên</th>
             <th scope="col">Thời gian</th>
             <th scope="col" colSpan="2">Thao tác</th>
@@ -42,7 +38,7 @@ export default function Menu() {
           <tbody>
           { menus && menus.map(item  => (
             <tr>
-              <td scope="row">{item._id}</td>
+              {/* <td scope="row">{item._id}</td> */}
               <td>{item.title}</td>
               <td>{moment(item.createdAt).format("DD MMMM YYYY")}</td>
               {/*<td></td>*/}
@@ -50,7 +46,6 @@ export default function Menu() {
               <td><a>Xóa</a></td>
             </tr>
             ))}
-
           </tbody>
         </table>
       </div>

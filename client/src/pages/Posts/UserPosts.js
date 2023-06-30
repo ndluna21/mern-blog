@@ -4,7 +4,6 @@ import { postsAPI } from "./../../api/api";
 import { useLocation } from "react-router-dom";
 import PostsGrid from "../../components/PostsGrid/PostsGrid";
 import { Spin, Alert } from "antd";
-// import { Form, Input, Button, Tag, message, Image } from "antd";
 
 export default function UserPosts() {
   const userState = useSelector((st) => st.user);
@@ -33,8 +32,8 @@ export default function UserPosts() {
       setErrorMsg(null);
     } catch (error) {
       setPostsData([]);
-      setErrorMsg("Error loading user posts");
-      console.log("Error retrieving all posts...", error);
+      setErrorMsg("Lỗi khi tải bài đăng của người dùng");
+      console.log("Lỗi khi truy xuất tất cả bài đăng...", error);
     }
   };
 
@@ -66,18 +65,18 @@ export default function UserPosts() {
       ) : Object.keys(postsData).length === 0 ? (
         <div className="loader-container">
           <Spin size="large" />
-          <h2>You have no posts yet</h2>
+          <h2>Bạn hiện không có bài viết nào</h2>
         </div>
       ) : (
         <>
-          <h2>{userName ? `Posts of user ${userName}` : "Your posts"}</h2>
+          <h2>{userName ? `Bài đăng của ${userName}` : "Bài đăng của bạn"}</h2>
           {Boolean(postsData) && Boolean(postsData.length) ? (
             <PostsGrid
               data={postsData}
               reloadPosts={(reloadTrigger) => setReload(reloadTrigger)}
             />
           ) : (
-            <h2>You have no posts yet</h2>
+            <h2>Bạn không có bài đăng nào</h2>
           )}
         </>
       )}

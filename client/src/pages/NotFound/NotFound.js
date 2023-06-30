@@ -4,7 +4,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 export default function NotFound() {
   return (
     <div className="my-2-auto">
-      <h1 className="centered-text">Page not found</h1>
+      <h1 className="centered-text">Trang không tồn tại</h1>
       <Player
         autoplay
         loop

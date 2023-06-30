@@ -69,14 +69,14 @@ export default function CommentsDesktop({
                         htmlType="submit"
                         type="primary"
                       >
-                        Update Comment
+                        Chỉnh sửa bình luận
                       </Button>
                       <Button
                         disabled={submitting}
                         htmlType="button"
                         onClick={() => setEditSelectedCommentID(null)}
                       >
-                        Cancel
+                        Đóng
                       </Button>
                     </div>
                   </form>

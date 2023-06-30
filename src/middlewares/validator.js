@@ -10,26 +10,26 @@ export const validateSignup = (data) => {
   data.password2 = data.confirmPassword ? data.confirmPassword : "";
 
   if (Validator.isEmpty(data.userName)) {
-    errors.userName = "userName field is required";
+    errors.userName = "Tên người dùng không được để trống";
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
+    errors.email = "Email không được để trống";
   } else if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
+    errors.email = "Email không hợp lệ";
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = "Password field is required";
+    errors.password = "Mật khẩu không dược để trống";
   }
   if (Validator.isEmpty(data.confirmPassword)) {
-    errors.confirmPassword = "Confirm password field is required";
+    errors.confirmPassword = "Xác nhận mật khẩu không được để trống";
   }
-  if (!Validator.isLength(data.password, { min: 3, max: 30 })) {
-    errors.password = "Password must be at least 3 characters long";
+  if (!Validator.isLength(data.password, { min: 5, max: 30 })) {
+    errors.password = "Mật khẩu phải có ít nhất 5 kí tự";
   }
   if (!Validator.equals(data.password, data.confirmPassword)) {
-    errors.confirmPassword = "Passwords must match";
+    errors.confirmPassword = "Mật khẩu phải trùng khớp";
   }
   return {
     errors,
@@ -44,13 +44,13 @@ export const validateSignin = (data) => {
   data.password = data.password ? data.password : "";
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
+    errors.email = "Email không được để trống";
   } else if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
+    errors.email = "Email không hợp lệ";
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = "Password field is required";
+    errors.password = "Mật khẩu không được để trống";
   }
   return {
     errors,

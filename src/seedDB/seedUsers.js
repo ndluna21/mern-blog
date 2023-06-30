@@ -21,7 +21,7 @@ connectDB();
           return;
         }
       });
-      console.log("User added succefully!");
+      console.log("Thêm người dùng thành công!");
     } catch (error) {
       console.log(error);
       return error;

@@ -13,7 +13,6 @@ import { userAuthActions } from "./../../redux/actions/actionCreator";
 import {menusAPI} from "../../api/api";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
-// import Search from "antd/lib/transfer/search";
 const { SubMenu } = Menu;
 
 const {Search} = Input;
@@ -65,17 +64,17 @@ export default function HorizontalNavbar() {
               className="float-right "
             >
               <Menu.Item key="userProfile" icon={<SettingOutlined />}>
-                <a href="/user/profile">User Profile</a>
+                <a href="/user/profile">Thông tin người dùng</a>
               </Menu.Item>
               <Menu.Item key="userPosts" icon={<GroupOutlined />}>
-                <a href="/user/posts">User Posts</a>
+                <a href="/user/posts">Bài viết đã đăng</a>
               </Menu.Item>
               <Menu.Item
                 key="logout"
                 icon={<LoginOutlined />}
                 onClick={() => dispatch(userAuthActions.logout())}
               >
-                Logout
+                Đăng xuất
               </Menu.Item>
             </SubMenu>
                 <Menu.Item
@@ -83,7 +82,7 @@ export default function HorizontalNavbar() {
                   icon={<FormOutlined />}
                   className="float-right"
                 >
-                  <a href="/posts/new">New Post</a>
+                  <a href="/posts/new">Bài viết mới</a>
                 </Menu.Item>
             {userState.user.userType === 'admin' && (
               <>
@@ -93,6 +92,13 @@ export default function HorizontalNavbar() {
                     className="float-right"
                 >
                   <a href="/menu">QL Chuyên mục</a>
+                </Menu.Item>
+                <Menu.Item
+                    key="kiemDuyet"
+                    icon={<FormOutlined />}
+                    className="float-right"
+                >
+                  <a href="/check">Kiểm duyệt bài viết</a>
                 </Menu.Item>
               </>
             )}
@@ -123,14 +129,14 @@ export default function HorizontalNavbar() {
               icon={<LoginOutlined />}
               className="float-right"
             >
-              <a href="/login">Login</a>
+              <a href="/login">Đăng nhập</a>
             </Menu.Item>
             <Menu.Item
               key="logout"
               icon={<UserAddOutlined />}
               className="float-right"
             >
-              <a href="/signup">Signup</a>
+              <a href="/signup">Đăng kí</a>
             </Menu.Item>
           </>
         )}

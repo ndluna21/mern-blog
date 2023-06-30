@@ -3,7 +3,6 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Form, Input, Button, Tag, message } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
-// import { useSelector } from "react-redux";
 import TextArea from "antd/lib/input/TextArea";
 import { postsAPI } from "./../../api/api";
 
@@ -11,7 +10,6 @@ export default function EditPost() {
   const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState({});
-  // const userState = useSelector((st) => st.user);
   const location = useLocation();
   const [postID, setPostID] = useState(null);
 
@@ -26,10 +24,10 @@ export default function EditPost() {
           console.log(res);
           setInitialValues(res);
         } catch (error) {
-          console.log("Error retrieving one post...", error);
+          console.log("Lỗi khi truy xuất bài viết...", error);
         }
       } else {
-        message.error("Post ID was not provided");
+        message.error("ID bài đăng không được cung cấp");
         router.goBack();
       }
     })();
@@ -40,30 +38,30 @@ export default function EditPost() {
       await postsAPI.update({
         post: event,
       });
-      message.success("Post updated successfully");
+      message.success("Chỉnh sửa bài viết thành công");
       router.goBack();
     } catch (error) {
-      console.log("Error updating post...", error.response ?? error);
+      console.log("Lỗi khi chỉnh sửa bài viết...", error.response ?? error);
       if (error.response && error.response.data) {
         setSubmissionErrors(error.response.data);
-      } else setSubmissionErrors({ err: "Update error" });
+      } else setSubmissionErrors({ err: "Lỗi chỉnh sửa" });
     }
   };
 
   const checkValidation = (values) => {
     const errors = {};
     if (!values.title?.trim()) {
-      errors.title = "Please enter the post's title";
+      errors.title = "Vui lòng nhập tiêu đề bài viết";
     }
     if (!values.content?.trim()) {
-      errors.content = "Please enter the post's content";
+      errors.content = "Vui lòng nhập nội dung bài viết";
     }
     return errors;
   };
 
   return (
     <div className="form-container">
-      <h3>Edit post</h3>
+      <h3>Chỉnh sửa bài viết</h3>
       <FinalForm
         initialValues={initialValues}
         validate={checkValidation}
@@ -71,7 +69,7 @@ export default function EditPost() {
         render={({ handleSubmit, submitting }) => (
           <form className="form" onSubmit={handleSubmit}>
             <Form.Item
-              label="Title"
+              label="Tiêu đề"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
@@ -87,7 +85,7 @@ export default function EditPost() {
               </Field>
             </Form.Item>
 
-            <Form.Item label="Content" labelCol={{ span: 24 }}>
+            <Form.Item label="Nội dung" labelCol={{ span: 24 }}>
               <Field name="content">
                 {({ input, meta }) => (
                   <div>
@@ -100,7 +98,7 @@ export default function EditPost() {
               </Field>
             </Form.Item>
 
-            <Form.Item label="Image URL" labelCol={{ span: 24 }}>
+            <Form.Item label="Đường dẫn ảnh" labelCol={{ span: 24 }}>
               <Field name="imagePath">
                 {({ input, meta }) => (
                   <div>
@@ -125,10 +123,10 @@ export default function EditPost() {
 
             <div className="buttons-wrapper-horizontal">
               <Button disabled={submitting} htmlType="submit" type="primary">
-                Update Post
+                Cập nhật bài viết
               </Button>
               <Button htmlType="button" onClick={() => router.goBack()}>
-                Back
+                Quay lại
               </Button>
             </div>
           </form>

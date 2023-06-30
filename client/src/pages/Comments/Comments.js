@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import defaultUser from "./../../assets/images/default-user.png";
-// import Avatar from "antd/lib/avatar/avatar";
 import "./Comments.scss";
-// import moment from "moment";
-// import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 import { useSelector } from "react-redux";
-// import { Form as FinalForm, Field } from "react-final-form";
 import { message, Modal } from "antd";
-// import { Form, Input, Button, Alert } from "antd";
 import { commentsAPI } from "../../api/api";
 import isEmpty from "lodash.isempty";
 import CommentsDesktop from "./CommentsDesktop";
@@ -24,7 +18,6 @@ export default function Comments({
   const [selectedEditCommentID, setEditSelectedCommentID] = useState(null);
   const [deleteReloading, setDeleteReloading] = useState(false);
   const [editReloading, setEditReloading] = useState(false);
-  // const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState(null);
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -40,22 +33,22 @@ export default function Comments({
     try {
       await commentsAPI.delete(selectedDeleteCommentID);
       setDeleteModal(false);
-      message.success("Comment deleted successfully");
+      message.success("Xóa bình luận thành công");
       setDeleteReloadingFlag(!deleteReloading);
       setDeleteReloading(!deleteReloading);
     } catch (error) {
-      console.log("Error deleting comment...", error.response ?? error);
-      message.error("Error deleting comment");
+      console.log("Lỗi khi xóa bình luận...", error.response ?? error);
+      message.error("Lỗi khi xóa bình luận");
       if (error.response && error.response.data) {
         message.error(error.response.data);
-      } else message.error("Error deleting comment");
+      } else message.error("Lỗi khi xóa bình luận");
       setDeleteModal(false);
     }
   };
 
   const onSubmit = async (event) => {
     if (isEmpty(event) || !event.content) {
-      setSubmissionErrors("Can't submit an empty comment");
+      setSubmissionErrors("Không thể gửi bình luận trống");
     } else {
       setSubmissionErrors(null);
     }
@@ -64,13 +57,13 @@ export default function Comments({
       await commentsAPI.update({
         comment: { ...event },
       });
-      message.success("Comment updated successfully");
+      message.success("Cập nhật mật khẩu thành công");
       setEditReloadingFlag(!editReloading);
       setEditReloading(!editReloading);
       setEditSelectedCommentID(null);
     } catch (error) {
-      console.log("Error editing comment...", error.response ?? error);
-      message.error("Error editing comment");
+      console.log("Lỗi khi chỉnh sửa bình luận...", error.response ?? error);
+      message.error("Lỗi khi chỉnh sửa bình luận");
     }
   };
 
@@ -111,13 +104,13 @@ export default function Comments({
       )}
 
       <Modal
-        title="Delete Confirmation"
+        title="Xác nhận xóa"
         visible={deleteModal}
         onOk={() => confirmDelete()}
         onCancel={() => setDeleteModal(false)}
         centered
       >
-        <p>Are you sure you want to delete this comment?</p>
+        <p>Bạn có chắc chắn muốn xóa bình luận này?</p>
       </Modal>
     </div>
   );

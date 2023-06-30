@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Tag, message } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
-// import { useSelector } from "react-redux";
 import {menusAPI} from "./../../api/api";
 
 export default function NewMenu() {
   const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState({});
-  // const userState = useSelector((st) => st.user);
 
   const onSubmit = async (event) => {
     console.log('--- click');
@@ -17,27 +15,27 @@ export default function NewMenu() {
       await menusAPI.add({
         menu: { ...event },
       });
-      message.success("Post created successfully");
+      message.success("Tạo danh mục thành công");
       router.push("/menu");
     } catch (error) {
-      console.log("Error creating a new post...", error.response ?? error);
+      console.log("Lỗi khi tạo danh mục mới...", error.response ?? error);
       if (error.response && error.response.data) {
         setSubmissionErrors(error.response.data);
-      } else setSubmissionErrors({ err: "Post error" });
+      } else setSubmissionErrors({ err: "Tạo lỗi" });
     }
   };
 
   const checkValidation = (values) => {
     const errors = {};
     if (!values.title?.trim()) {
-      errors.title = "Please enter the post's title";
+      errors.title = "Vui lòng nhập tên danh mục";
     }
     return errors;
   };
 
   return (
     <div className="form-container">
-      <h3>Create a new menu</h3>
+      <h3>Tạo danh mục mới</h3>
       <FinalForm
         initialValues={initialValues}
         validate={checkValidation}
@@ -45,7 +43,7 @@ export default function NewMenu() {
         render={({ handleSubmit, submitting }) => (
           <form className="form" onSubmit={handleSubmit}>
             <Form.Item
-              label="Title"
+              label="Tên danh mục"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
             >
@@ -62,10 +60,10 @@ export default function NewMenu() {
             </Form.Item>
             <div className="buttons-wrapper-horizontal">
               <Button htmlType="submit" type="primary">
-                Create Menu
+                Tạo danh mục
               </Button>
               <Button htmlType="button" onClick={() => router.goBack()}>
-                Back
+                Quay lại
               </Button>
             </div>
           </form>

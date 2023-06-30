@@ -24,6 +24,7 @@ export const usersAPI = {
 // POSTS
 export const postsAPI = {
   getAll: () => axios.get(`/posts`),
+  getAllTrue: (data) => axios.get('/posts',data),
   getPostsByMenu: (id = null) => axios.get(`/posts?menu_id=${id}`),
   getPostByUserId: (id) => axios.get(`/posts/user/${id}`),
   getOne: (id) => axios.get(`/posts/${id}`),

@@ -23,7 +23,7 @@ export const updateUser = async (user) => {
     const foundUser = await User.findById(user._id);
     //check if the old password matches the one in the db
     if (!foundUser.validPassword(user.oldPassword)) {
-      throw new Error("Incorrect old password");
+      throw new Error("Sai mật khẩu cũ");
     }
     //encrypt the password
     foundUser.password = foundUser.encryptPassword(user.password);

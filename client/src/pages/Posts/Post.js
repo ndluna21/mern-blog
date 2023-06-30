@@ -35,11 +35,11 @@ export default function Post() {
           setErrorMsg(null);
         } catch (error) {
           setPostData({});
-          setErrorMsg("Error loading post data");
-          console.log("Error retrieving one post...", error);
+          setErrorMsg("Lỗi khi tải dữ liệu bài viết");
+          console.log("Lỗi khi truy xuất một bài đăng...", error);
         }
       } else {
-        message.error("An error occured while retrieving post ID");
+        message.error("Đã xảy ra lỗi khi truy xuất ID bài đăng");
         router.push("/");
       }
     })();
@@ -49,14 +49,14 @@ export default function Post() {
     try {
       await postsAPI.delete(deletePostID);
       setDeleteModal(false);
-      message.success("Post deleted successfully");
+      message.success("Xóa bài viết thành công");
       router.goBack();
     } catch (error) {
-      console.log("Error deleting post...", error.response ?? error);
-      message.error("Error deleting post");
+      console.log("Lỗi khi xóa bài viết...", error.response ?? error);
+      message.error("Lỗi xóa bài đăng");
       if (error.response && error.response.data) {
         message.error(error.response.data);
-      } else message.error("Error deleting post");
+      } else message.error("Lỗi xóa bài đăng");
       setDeleteModal(false);
     }
   };
@@ -103,7 +103,7 @@ export default function Post() {
                   router.push("/posts/edit", { postID: postData._id })
                 }
               >
-                Edit
+                Sửa
               </Button>
 
               <Button
@@ -116,7 +116,7 @@ export default function Post() {
                   setDeleteModal(true);
                 }}
               >
-                Delete
+                Xóa
               </Button>
             </div>
           )}
@@ -137,13 +137,13 @@ export default function Post() {
           />
 
           <Modal
-            title="Delete Confirmation"
+            title="Xác nhận xóa bài"
             visible={deleteModal}
             onOk={() => confirmDelete()}
             onCancel={() => setDeleteModal(false)}
             centered
           >
-            <p>Are you sure you want to delete post?</p>
+            <p>Bạn có chắc muốn xóa bài viết?</p>
           </Modal>
         </>
       )}

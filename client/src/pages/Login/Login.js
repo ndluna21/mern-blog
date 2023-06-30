@@ -26,8 +26,7 @@ export default function Login() {
           </div>
           <div className="right-panel">
             <h2>
-              #1 Bloggin website for everyone around the globe. Totally free and
-              easy to use.
+              Trang web blog số 1 cho mọi người. Hoàn toàn miễn phí và dễ sử dụng
             </h2>
             <Player
               autoplay
